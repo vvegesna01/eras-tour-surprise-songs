@@ -1,25 +1,53 @@
 import { Track } from '../types/Track';
 
 export const TrackFrame = (track: Track) => {
-    return (
-        <div className={`${(track.venue === "SETLIST") ? "opacity-80" : ""} col-12 transition-all transition-ease-in-out overflow-scroll`} style={{backgroundColor: track.isPlayed ? ((track.venue === "SETLIST")
-         ? "lightgrey" : "lightgreen") : "white"}}>
-            <div className="flex flex-column xl:flex-row xl:align-items-start p-1 gap-4">
-                <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                    <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-                        <div className="text-2xl font-bold text-900">{track.title}</div>
-                        <div className="flex align-items-center gap-3">
-                            <span className="flex align-items-center gap-2">
-                                <i className="pi pi-map"></i>
-                                <span className="font-semibold">{(track.venue === '') ? "?" : track.venue}</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                        <span className="text-2xl font-semibold">{track.isPlayed ? (track.venue === "SETLIST") ?<i className="pi pi-star"></i> : <i className="pi pi-check"></i> : <i className="pi pi-question"></i>}</span>
-                    </div>
-                </div>
-            </div>
+  const trackStyle = {
+    backgroundColor: track.isPlayed ? (track.venue === 'SETLIST' ? 'lightgrey' : 'lightgreen') : 'white',
+    padding: '20px',
+    margin: '10px',
+    borderRadius: '10px',
+    marginBottom: '10px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  };
+
+  const playedIconStyle = {
+    fontSize: '20px',
+  };
+
+  const venueStyle = {
+    fontWeight: 'bold',
+    marginTop: '4px',
+  };
+
+  const setlistVenueStyle = {
+    color: '#888888',
+  };
+
+  const playedIcon = track.isPlayed ? (
+    track.venue === 'SETLIST' ? (
+      <i className="pi pi-star" style={playedIconStyle}></i>
+    ) : (
+      <i className="pi pi-check" style={playedIconStyle}></i>
+    )
+  ) : (
+    <i className="pi pi-question" style={playedIconStyle}></i>
+  );
+
+  return (
+    <div className={`track-frame ${(track.venue === 'SETLIST') ? 'opacity-80' : ''}`} style={trackStyle}>
+      <div className="track-info">
+        <div className="track-title" style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '4px' }}>{track.title}</div>
+        <div className="track-details">
+          <span className={`venue ${(track.venue === 'SETLIST') ? 'setlist-venue' : ''}`} style={venueStyle}>
+            <i className="pi pi-map"></i>
+            {track.venue ? track.venue : '?'}
+          </span>
         </div>
-    );
+      </div>
+      <div className="track-status p-3">
+        <span className="status-icon">{playedIcon}</span>
+      </div>
+    </div>
+  );
 };

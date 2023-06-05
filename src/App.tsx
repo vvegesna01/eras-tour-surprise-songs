@@ -9,6 +9,8 @@ import { setlist, surpriseSongs } from './data/setlist';
 import { Chart } from 'primereact/chart';
 import React, { useState, useEffect } from 'react';
 import { Setlist } from './types/Setlist';
+import Eras from './era';
+
 
 function App() {
 
@@ -85,7 +87,13 @@ function App() {
   );
 
   return (
-  <>
+  <>  
+    <Eras/>
+    <div>
+        <h1 style={{ fontFamily: "era", textAlign: "center" }}>TAYLOR SWIFT: THE ERAS TOUR</h1>
+        <h1 style={{ fontFamily: "era", textAlign: "center" }}>Surprise Song Tracker</h1>
+      </div>
+
     <div className="grid">
       <div className="col md:col-8 fadeinleft animation-duration-500 animation-iteration ">
         <Card className="" title={genHeader}>

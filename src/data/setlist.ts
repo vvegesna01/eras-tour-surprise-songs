@@ -1,5 +1,6 @@
 import { Track } from '../types/Track'
 import { Setlist } from '../types/Setlist'
+import { Covers } from '../types/Covers'
 
 const debut: Track[] = [{
     title: 'Tim McGraw',
